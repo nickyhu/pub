@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- <script type="text/javascript" src="build/nes.js"></script> -->
+    <script type="module" src="bundle.js"></script>
+    <script type="text/javascript">
+    </script>
+  </head>
+  <body onload="init()">
+    <p>
+      <select id="romList">
+        <option value="./roms/Kage.nes" selected>Kage</option>
+        <option value="./roms/Sgt. Helmet - Training Day (2013)(The Mojon Twins)[!].nes">Sgt. Helmet</option>
+        <option value="./roms/pong1k.nes">pong1k</option>
+        <option value="./roms/The Invasion.nes">The Invasion</option>
+        <option value="./roms/mguard.nes">mguard</option>
+      </select>
+      <button id="loadROMButton" onclick="loadRom()">load rom</button><br />
+      Select rom from the list or drag and drop your own rom into this window to start.
+    </p>
+
+    <p>
+      <canvas id="mainCanvas" width="256" height="240"
+	      style="border:1px solid black; width:640px; height:600px; image-rendering: pixelated;"></canvas>
+      <span id="fps"></span> fps
+    </p>
+
+    <div>
+      <table>
+        <tr>
+          <td></td>
+          <td><button id="pad1_4" onmousedown="pressPadButton(NesJs.Joypad.BUTTONS.UP)"
+                onclick="releasePadButton(NesJs.Joypad.BUTTONS.UP)">U</button></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><button id="pad1_6" onmousedown="pressPadButton(NesJs.Joypad.BUTTONS.LEFT)"
+                onclick="releasePadButton(NesJs.Joypad.BUTTONS.LEFT)">L</button></td>
+          <td></td>
+          <td><button id="pad1_7" onmousedown="pressPadButton(NesJs.Joypad.BUTTONS.RIGHT)"
+                onclick="releasePadButton(NesJs.Joypad.BUTTONS.RIGHT)">R</button></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><button id="pad1_5" onmousedown="pressPadButton(NesJs.Joypad.BUTTONS.DOWN)"
+                onclick="releasePadButton(NesJs.Joypad.BUTTONS.DOWN)">D</button></td>
+          <td></td>
+          <td><button id="pad1_2" onmousedown="pressPadButton(NesJs.Joypad.BUTTONS.SELECT)"
+                onclick="releasePadButton(NesJs.Joypad.BUTTONS.SELECT)">SELECT</button></td>
+          <td><button id="pad1_3" onmousedown="pressPadButton(NesJs.Joypad.BUTTONS.START)"
+                onclick="releasePadButton(NesJs.Joypad.BUTTONS.START)">START</button></td>
+          <td><button id="pad1_1" onmousedown="pressPadButton(NesJs.Joypad.BUTTONS.B)"
+                onclick="releasePadButton(NesJs.Joypad.BUTTONS.B)">B</button></td>
+          <td><button id="pad1_0" onmousedown="pressPadButton(NesJs.Joypad.BUTTONS.A)"
+                onclick="releasePadButton(NesJs.Joypad.BUTTONS.A)">A</button></td>
+        </tr>
+      </table>
+    </div>
+
+    <p>
+      <div>
+        <button id="clearVRAM" onclick="clearVRAM()">clear VRAM</button>
+      </div>
+      <div>
+        <button id="dumpROMButton" onclick="pushDumpROM()">dump ROM</button>
+        <button id="dumpRegButton" onclick="pushDumpReg()">dump CPU/PPU reg</button>
+        <button id="dumpRAMButton" onclick="pushDumpRAM()">dump CPU RAM</button>
+        <button id="dumpVRAMButton" onclick="pushDumpVRAM()">dump PPU VRAM</button>
+        <button id="dumpSPRRAMButton" onclick="pushDumpSPRRAM()">dump PPU SPRRAM</button>
+        <button id="stopButton" onclick="pushStopButton()">stop</button>
+        <button id="stepButton" onclick="pushStepButton()">step</button>
+        <button id="resumeButton" onclick="pushResumeButton()">resume</button>
+      </div>
+      <textarea id="dump" cols="128" rows="16" readonly="readonly"> </textarea>
+    </p>
+  </body>
+</html>
